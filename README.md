@@ -1,170 +1,131 @@
-# Express.js API Practice - CCIT
+# student-management-API
+this is a simple express.js API for adding products and adding students. both are in the same project. the controller are different, but the route is still on the same file 
 
-A REST API built with Express.js for learning purposes. This project includes basic routes, CRUD operations with in-memory storage, and comprehensive testing.
+# Installation and Setup
+1. Clone my repo
+git clone https://github.com/Fluncks/student-management-API
+cd student-management-API
 
-## Features
-
-- Express.js 5.x with ES modules support
-- Environment variable configuration with dotenv
-- Basic route structure with controllers
-- CRUD operations for Products (in-memory array)
-- Error handling middleware
-- Jest testing setup with supertest
-- Development watch mode
-
-## Requirements
-
-- Node.js 18.x or higher (with ES modules support)
-
-## Installation
-
-```bash
+3. Install dependencies
 npm install
-```
 
-## Configuration
-
-Copy the example environment file and configure it:
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` with your settings:
-
-```env
-PORT=3000
-NODE_ENV=development
-```
-
-## Running the Application
-
-Development mode with auto-restart on file changes:
-
-```bash
+4. Run the application
 npm run dev
-```
 
-Production mode:
+Server will run at:
+http://localhost:3000
 
-```bash
-npm start
-```
-
-## Project Structure
-
-```
-src/
-├── controllers/
-│   └── main-controller.js    # Route handlers
-├── routes/
-│   └── index.js              # API routes
-└── index.js                  # Application entry point
-
-tests/
-├── routes.test.js            # Basic route tests
-└── products.test.js          # Products CRUD tests
-```
-
-## Available Routes
-
-### Basic Routes
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/` | Welcome message |
-| GET | `/health` | Health check with timestamp |
-| GET | `/about` | API information |
-| GET | `/greet/:name` | Greet user by name |
-
-### Products CRUD Routes
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/products` | Get all products |
-| GET | `/products/:id` | Get product by ID |
-| POST | `/products` | Create new product |
-| PUT | `/products/:id` | Update product |
-| DELETE | `/products/:id` | Delete product |
-
-### Example Requests
-
-**Get all products:**
-```bash
-curl http://localhost:3000/products
-```
-
-**Get single product:**
-```bash
-curl http://localhost:3000/products/1
-```
-
-**Create product:**
-```bash
-curl -X POST http://localhost:3000/products \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Monitor","price":2000000,"stock":20}'
-```
-
-**Update product:**
-```bash
-curl -X PUT http://localhost:3000/products/1 \
-  -H "Content-Type: application/json" \
-  -d '{"price":12000000,"stock":5}'
-```
-
-**Delete product:**
-```bash
-curl -X DELETE http://localhost:3000/products/2
-```
-
-**Greet endpoint:**
-```bash
-curl http://localhost:3000/greet/Budi
-```
-
-## Testing
-
-Run all tests:
-
-```bash
-npm test
-```
-
-Run tests in watch mode:
-
-```bash
-npm test -- --watch
-```
-
-## Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm start` | Start the server |
-| `npm run dev` | Start in development mode with watch |
-| `npm test` | Run tests |
-
-## Response Format
-
-All API responses follow this format:
-
-**Success:**
-```json
+# API Endpoints
+GET /
+Response:
 {
-  "success": true,
-  "data": { ... }
+ "message": "Welcome to the Express API",
+ "version": "1.0.0"
 }
-```
 
-**Error:**
-```json
+GET /health
+Response:
 {
-  "success": false,
-  "message": "Error description"
+ "status": "ok",
+ "timestamp": "2026-02-05T00:00:00.000Z"
 }
-```
 
-## License
+GET /about
+Response:
+{
+ "name": "CCIT Student API",
+ "version": "1.0.0",
+ "author": "Nicholas Gabriel Adinata",
+ "description": "A simple API for learning Express.js"
+}
 
-ISC
+GET /greet/:name
+Example:
+GET /greet/Budi
+Response:
+{
+ "message": "Hello, Budi! Welcome to CCIT API."
+}
+
+# Products API
+
+GET /products
+Response:
+{
+ "success": true,
+ "count": 3,
+ "data": [...]
+}
+
+GET /products/:id
+Response:
+{
+ "success": true,
+ "data": {...}
+}
+
+POST /products
+Request Body:
+{
+ "name": "Monitor",
+ "price": 2000000,
+ "stock": 20
+}
+
+PUT /products/:id
+Request Body:
+{
+ "price": 12000000,
+ "stock": 5
+}
+
+DELETE /products/:id
+Response:
+{
+ "success": true,
+ "message": "Product deleted successfully"
+}
+
+
+
+# Students API
+
+GET /students
+Response:
+{
+ "success": true,
+ "count": 3,
+ "data": [...]
+}
+
+GET /students/:id
+Response:
+{
+ "success": true,
+ "data": {...}
+}
+
+POST /students
+Request Body:
+{
+ "name": "Raka",
+ "email": "raka@ccit.edu",
+ "major": "Software Engineering",
+ "semester": 4,
+ "gpa": 3.6
+}
+
+PUT /students/:id
+Request Body:
+{
+ "semester": 5,
+ "gpa": 3.7
+}
+
+DELETE /students/:id
+Response:
+{
+ "success": true,
+ "message": "Student deleted successfully"
+
+ ALL THANKS TO MY GOAT PAK HUDYA @PEROGEREMMER
