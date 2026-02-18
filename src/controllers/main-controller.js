@@ -16,7 +16,7 @@ export const about = (req, res) => {
   res.json({
     name: 'CCIT Student API',
     version: '1.0.0',
-    author: 'Your Name',
+    author: 'Nicholas Gabriel Adinata',
     description: 'A simple API for learning Express.js'
   });
 };
@@ -26,6 +26,19 @@ export const greet = (req, res) => {
   res.json({
     message: `Hello, ${name}! Welcome to CCIT API.`
   });
+};
+
+// ====== Simple Students Routes Controllers ======
+let students = [
+  { id: 1, name: "Budi Santoso", email: "budi@ccit.edu", major: "Software Engineering", semester: 4, gpa: 3.5 },
+  { id: 2, name: "Ani Wijaya", email: "ani@ccit.edu", major: "Data Science", semester: 4, gpa: 3.8 },
+  { id: 3, name: "Citra Dewi", email: "citra@ccit.edu", major: "Software Engineering", semester: 2, gpa: 3.2 }
+];
+
+const generateStudentId = () => {
+  return students.length > 0
+    ? Math.max(...students.map(s => s.id)) + 1
+    : 1;
 };
 
 // ====== Products CRUD Controllers (Step 5) ======
@@ -113,6 +126,7 @@ export const deleteProduct = (req, res) => {
     data: deletedProduct
   });
 };
+
 
 // ====== Existing Controllers ======
 
